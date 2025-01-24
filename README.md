@@ -97,3 +97,64 @@ Para futuras actualizaciones, asegúrate de seguir la estructura del plugin y ac
 ## Contacto
 
 Para cualquier duda o problema, por favor contacta a NETUP404.
+
+Descripción de los Archivos
+wbn.php: Archivo principal del plugin que inicializa el plugin y carga las clases necesarias. También registra las páginas de usuario y administrador al activar el plugin.
+
+includes/class-wbn-registry.php:
+
+Registra tipos de post personalizados (banners).
+Añade menús de administración y páginas de configuración.
+includes/class-wbn-banners.php:
+
+Gestiona la creación, edición y eliminación de banners.
+Maneja las impresiones y clics en los banners.
+Previene el fraude mediante un sistema de seguimiento de cookies.
+Añade un cuadrado semitransparente de imagen a los banners.
+includes/class-wbn-credits.php:
+
+Maneja el sistema de créditos.
+Otorga créditos basados en impresiones y clics.
+Inicializa los créditos de usuario al registrarse.
+Previene el fraude mediante un sistema de seguimiento de cookies.
+includes/class-wbn-reports.php:
+
+Genera reportes y estadísticas para usuarios y administradores.
+Muestra puntos ganados y estadísticas de campañas.
+includes/class-wbn-affiliates.php:
+
+Gestiona el sistema de afiliados.
+Genera URLs de afiliados y redime tokens de afiliados.
+includes/class-wbn-bank.php:
+
+Maneja la gestión de la banca y las recompensas.
+Permite imprimir puntos y gestionar las ganancias de la banca.
+Implementa un sistema de tokens para generar y redimir cheques regalo de puntos.
+templates/user-dashboard.php:
+
+Plantilla para el panel de usuario.
+Muestra estadísticas y opciones de gestión de campañas.
+templates/admin-dashboard.php:
+
+Plantilla para el panel de administrador.
+Muestra estadísticas globales y opciones de gestión de campañas.
+templates/admin-campaigns.php:
+
+Plantilla para la gestión de campañas en el panel de administrador.
+templates/admin-affiliates.php:
+
+Plantilla para la gestión de afiliados en el panel de administrador.
+templates/admin-bank.php:
+
+Plantilla para la gestión de la banca en el panel de administrador.
+assets/css/styles.css:
+
+Contiene los estilos CSS para el plugin.
+Asegura una apariencia consistente y moderna en todas las páginas del plugin.
+assets/js/scripts.js:
+
+Contiene los scripts JavaScript para el plugin.
+Maneja la impresión de puntos y otras interacciones dinámicas.
+readme.md:
+
+Documento que contiene la descripción del plugin, instrucciones de instalación, y detalles sobre su funcionalidad.
