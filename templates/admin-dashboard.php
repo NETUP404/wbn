@@ -7,9 +7,7 @@ get_header();
 <div class="wrap">
     <h1>Panel Admin</h1>
     <div class="wbn-dashboard">
-        <?php
-        // Aquí puedes agregar el contenido dinámico del panel de administrador
-        ?>
+        <?php echo do_shortcode('[wbn_admin_dashboard]'); ?>
     </div>
 </div>
 
