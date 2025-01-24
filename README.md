@@ -30,3 +30,39 @@ Damos la bienvenida a contribuciones al plugin WeBanner. Por favor, sigue estas 
 3. **Enviar Pull Requests**: Haz un fork del repositorio, realiza tus cambios y envía un pull request.
 
 Para pautas más detalladas, consulta el archivo CONTRIBUTING.md.
+
+# WeBanner
+
+WeBanner es un plugin de intercambio de banners para WordPress donde los usuarios pueden ganar puntos basados en impresiones y clics y gastar sus puntos subiendo campañas a la plataforma.
+
+## Características
+
+- Registro de usuarios con nombre de usuario y correo electrónico.
+- Gestión de banners de imagen (720x90px) y texto (tipo AdWords).
+- Sistema de créditos basado en impresiones y clics.
+- Panel de usuario con estadísticas y gestión de campañas.
+- Panel de administrador con estadísticas globales y gestión de campañas.
+- Sistema de afiliados con recompensas.
+- Gestión de la banca para administrar los puntos generados y recompensas.
+
+## Estructura del Plugin
+webanner/
+├── assets/
+│ ├── css/
+│ │ └── styles.css
+│ └── js/
+│ └── scripts.js
+├── includes/
+│ ├── class-wbn-registry.php
+│ ├── class-wbn-banners.php
+│ ├── class-wbn-credits.php
+│ ├── class-wbn-reports.php
+│ ├── class-wbn-affiliates.php
+│ └── class-wbn-bank.php
+├── templates/
+│ ├── user-dashboard.php
+│ └── admin-dashboard.php
+├── languages/
+│ └── webanner-es_ES.mo
+├── wbn.php
+└── readme.md
