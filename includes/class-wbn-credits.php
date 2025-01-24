@@ -2,7 +2,6 @@
 
 class WBN_Credits {
     public function __construct() {
-        // Inicializar funciones de créditos
         add_action('wp_loaded', array($this, 'track_banner_impressions'));
         add_action('wp_loaded', array($this, 'track_banner_clicks'));
     }
