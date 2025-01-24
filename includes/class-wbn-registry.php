@@ -4,7 +4,6 @@ class WBN_Registry {
     private static $instance = null;
 
     private function __construct() {
-        // Inicializar el plugin
         add_action('init', array($this, 'register_custom_post_types'));
         add_action('admin_menu', array($this, 'add_admin_pages'));
     }
@@ -17,7 +16,6 @@ class WBN_Registry {
     }
 
     public function register_custom_post_types() {
-        // Registrar los tipos de post personalizados para banners y campañas
         register_post_type('wbn_banner', array(
             'labels' => array(
                 'name' => __('Banners', 'webanner'),
@@ -30,12 +28,10 @@ class WBN_Registry {
     }
 
     public function add_admin_pages() {
-        // Agregar páginas de administración
         add_menu_page('WeBanner', 'WeBanner', 'manage_options', 'webanner', array($this, 'admin_dashboard'), 'dashicons-admin-generic', 6);
     }
 
     public function admin_dashboard() {
-        // Contenido del dashboard de admin
-        echo '<div class="wrap"><h1>WeBanner Dashboard</h1></div>';
+        include plugin_dir_path(__FILE__) . '../templates/admin-dashboard.php';
     }
 }
