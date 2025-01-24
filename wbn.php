@@ -19,7 +19,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-reports.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-affiliates.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-bank.php';
 
-// Función para crear páginas automáticamente al activar el plugin
+// Crear páginas automáticamente al activar el plugin
 function wbn_create_pages() {
     if (get_page_by_path('panel-de-usuario') == null) {
         $user_dashboard_page = array(
@@ -51,5 +51,18 @@ register_activation_hook(__FILE__, 'wbn_create_pages');
 // Iniciar el plugin
 function wbn_init() {
     WBN_Registry::get_instance();
+    WBN_Banners::get_instance();
+    WBN_Credits::get_instance();
+    WBN_Reports::get_instance();
+    WBN_Affiliates::get_instance();
+    WBN_Bank::get_instance();
 }
 add_action('plugins_loaded', 'wbn_init');
+
+// Asegurar que todos los usuarios sean suscriptores por defecto
+function wbn_set_default_user_role() {
+    add_filter('default_role', function() {
+        return 'subscriber';
+    });
+}
+add_action('init', 'wbn_set_default_user_role');
