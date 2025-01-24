@@ -56,12 +56,39 @@ class WBN_Banners {
         $user_id = intval($_POST['user_id']);
 
         // Lógica para rastrear clics
-        $clicks = get_post_meta($banner_id, '_banner_clicks', true);
-        $clicks = $clicks ? $clicks + 1 : 1;
-        update_post_meta($banner_id, '_banner_clicks', $clicks);
+        if ($this->is_valid_request('click')) {
+            $clicks = get_post_meta($banner_id, '_banner_clicks', true);
+            $clicks = $clicks ? $clicks + 1 : 1;
+            update_post_meta($banner_id, '_banner_clicks', $clicks);
 
-        wp_send_json_success('Click tracked successfully');
+            wp_send_json_success('Click tracked successfully');
+        } else {
+            wp_send_json_error('Invalid request');
+        }
+    }
+
+    private function is_valid_request($type) {
+        // Lógica para validar las solicitudes de impresiones y clics, evitando el fraude
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+        $cookie_name = 'wbn_' . $type . '_track';
+
+        if (isset($_COOKIE[$cookie_name])) {
+            $data = json_decode(stripslashes($_COOKIE[$cookie_name]), true);
+            if (isset($data[$ip_address])) {
+                $last_time = $data[$ip_address];
+                $current_time = time();
+                if (($current_time - $last_time) < 21600) { // 6 horas
+                    return false; // Solicitud no válida
+                }
+            }
+        }
+
+        $data[$ip_address] = time();
+        setcookie($cookie_name, json_encode($data), time() + 21600, COOKIEPATH, COOKIE_DOMAIN); // 6 horas
+
+        return true; // Solicitud válida
     }
 }
 
+WBN_Banners::get_instance();
 new WBN_Banners();
