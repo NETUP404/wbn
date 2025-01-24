@@ -16,6 +16,37 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-registry.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-banners.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-credits.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-reports.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-affiliates.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-wbn-bank.php';
+
+// Función para crear páginas automáticamente al activar el plugin
+function wbn_create_pages() {
+    if (get_page_by_path('panel-de-usuario') == null) {
+        $user_dashboard_page = array(
+            'post_title'    => 'Panel de Usuario',
+            'post_content'  => '', 
+            'post_status'   => 'publish',
+            'post_type'     => 'page',
+        );
+        $page_id = wp_insert_post($user_dashboard_page);
+        if (!is_wp_error($page_id)) {
+            update_post_meta($page_id, '_wp_page_template', 'user-dashboard.php');
+        }
+    }
+    if (get_page_by_path('panel-admin') == null) {
+        $admin_dashboard_page = array(
+            'post_title'    => 'Panel Admin',
+            'post_content'  => '', 
+            'post_status'   => 'publish',
+            'post_type'     => 'page',
+        );
+        $page_id = wp_insert_post($admin_dashboard_page);
+        if (!is_wp_error($page_id)) {
+            update_post_meta($page_id, '_wp_page_template', 'admin-dashboard.php');
+        }
+    }
+}
+register_activation_hook(__FILE__, 'wbn_create_pages');
 
 // Iniciar el plugin
 function wbn_init() {
