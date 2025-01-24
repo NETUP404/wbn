@@ -2,7 +2,7 @@
 /*
 Plugin Name: WeBanner
 Description: Plugin de intercambio de banners donde los usuarios pueden ganar puntos basados en impresiones y clics.
-Version: 1.0
+Version: 1.1
 Author: NETUP404
 */
 
